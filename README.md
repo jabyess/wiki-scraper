@@ -14,5 +14,6 @@ So I wanted to build a thing that would visualize this in a graph of all the lin
 
 ## run it
 - have pipenv
-- `pipenv install` 
-- `scrapy runspider wikiscraper/spiders/wiki.py`
+- install dependencies: `pipenv install` 
+- activate virtual environment: `pipenv shell`
+- run scraper: `scrapy runspider wikiscraper/spiders/wiki.py`
