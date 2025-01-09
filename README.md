@@ -11,3 +11,8 @@ An experiment using `scrapy` and `flask`.
 There's a trope that if you start with a [random article](https://en.wikipedia.org/wiki/Special:Random), click the first *lowercase* link, and continue to follow that pattern, you will eventually wind up at [Philosophy](https://en.wikipedia.org/wiki/Philosophy).
 
 So I wanted to build a thing that would visualize this in a graph of all the links visited.
+
+## run it
+- have pipenv
+- `pipenv install` 
+- `scrapy runspider wikiscraper/spiders/wiki.py`

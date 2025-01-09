@@ -1,5 +1,6 @@
 import scrapy
 from scrapy import signals
+from scrapy.exporters import PythonItemExporter
 
 class LinkItem(scrapy.Item):
     href=scrapy.Field()
@@ -27,7 +28,10 @@ class WikiSpider(scrapy.Spider):
             href = link.css('::attr(href)').get()
             item = LinkItem(text=text, href=href)
 
-            if "Philosophy" in href:
+            if "/wiki/Philosophy" in href:
+                text = link.css('::text').get()
+                href = link.css('::attr(href)').get()
+                item = LinkItem(text=text, href=href)
                 return 
 
             if len(text) > 1 and text[0].islower():
@@ -37,9 +41,11 @@ class WikiSpider(scrapy.Spider):
                 return response.follow(href, self.parse)
 
     def closed(self, spider):
-        self.logger.info(f"-----------all links-------------{self.followed_links}")
+        self.logger.info(f"-----------followed links-------------{self.followed_links}")
         terms = []
         for item in self.followed_links:
-            terms.append(f"{item.get('text')} ")
+            terms.append(f"{item.get('href')} ")
         self.logger.info(terms)
+
+
             
